@@ -1,0 +1,15 @@
+name: ejecuta mi action  
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  hola:
+    runs-on: ['self-hosted','jean-runner']
+    steps:
+
+      - name: ejemplo action
+        uses: edwien-dev/central_devops/ac-hola@main
+        with:
+          nombre: jean gutierrez
+        
