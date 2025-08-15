@@ -1,0 +1,11 @@
+name: "Saludar"
+description: "Muestra un saludo"
+inputs:
+  nombre:
+    description: "Nombre a saludar"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - run: echo "Hola ${{ inputs.nombre }}!"
+      shell: bash
