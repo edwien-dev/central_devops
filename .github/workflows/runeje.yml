@@ -5,9 +5,8 @@ on:
 
 jobs:
   hola:
-    runs-on: ['self-hosted','jean-runner']
+    runs-on: ['arc-runner-set']
     steps:
-
       - name: ejemplo action
         uses: edwien-dev/central_devops/ac-hola@main
         with:
