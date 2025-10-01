@@ -11,4 +11,12 @@ jobs:
         uses: edwien-dev/central_devops/ac-hola@main
         with:
           nombre: jean gutierrez
-        
+
+      - name: Verificar versión de Node.js
+        run: node -v
+
+      - name: Verificar versión de npm
+        run: npm -v
+
+      - name: Verificar versión de Maven
+        run: mvn -v
