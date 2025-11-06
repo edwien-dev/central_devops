@@ -5,7 +5,7 @@ on:
 
 jobs:
   hola:
-    runs-on: ['arc-runnerset-2025']
+    runs-on: ['arc-normaliza-runner-set']
     steps:
       
       - name: Mostrar información del runner
