@@ -7,6 +7,19 @@ jobs:
   hola:
     runs-on: ['arc-runnerset-2025']
     steps:
+      
+      - name: Mostrar información del runner
+        run: uname -a
+
+      - name: Verificar si docker CLI existe
+        run: which docker || echo "docker NO está instalado"
+
+      - name: Ver versión de Docker (si está instalado)
+        run: docker -v || echo "docker no responde"
+
+      - name: Probar ejecutar un contenedor
+        run: docker run --rm hello-world || echo "falló el run"
+      
       - name: ejemplo action
         uses: edwien-dev/central_devops/ac-hola@main
         with:
@@ -20,3 +33,5 @@ jobs:
 
       - name: Verificar versión de Maven
         run: mvn -v
+
+      
