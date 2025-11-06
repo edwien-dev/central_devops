@@ -6,32 +6,13 @@ on:
 jobs:
   hola:
     runs-on: ['arc-normaliza-runner-set']
+    container:
+      image: node:20
     steps:
-      
-      - name: Mostrar información del runner
-        run: uname -a
+      - uses: actions/checkout@v4
 
-      - name: Verificar si docker CLI existe
-        run: which docker || echo "docker NO está instalado"
-
-      - name: Ver versión de Docker (si está instalado)
-        run: docker -v || echo "docker no responde"
-
-      - name: Probar ejecutar un contenedor
-        run: docker run --rm hello-world || echo "falló el run"
-      
-      - name: ejemplo action
-        uses: edwien-dev/central_devops/ac-hola@main
-        with:
-          nombre: jean gutierrez
-
-      - name: Verificar versión de Node.js
-        run: node -v
-
-      - name: Verificar versión de npm
-        run: npm -v
-
-      - name: Verificar versión de Maven
-        run: mvn -v
-
+      - name: Ver versión de Node y npm
+        run: |
+          node -v
+          npm -v
       
