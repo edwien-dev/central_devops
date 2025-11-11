@@ -17,4 +17,22 @@ jobs:
           fi
           echo "✅ Kaniko está presente"
 
+      - name: Configurar credenciales Docker Hub
+        run: |
+          mkdir -p $HOME/.docker
+          echo "{\"auths\":{\"https://index.docker.io/v1/\":{\"auth\":\"$(echo -n $DOCKER_USERNAME:$DOCKER_PASSWORD | base64)\"}}}" > $HOME/.docker/config.json
+        env:
+          DOCKER_USERNAME: "jeanedwien"
+          DOCKER_PASSWORD: "dckr_pat_i9ZRM2ElK8an5jO7w7BaKAaa440"
+
+      - name: Build y Push Dockerfile con Kaniko
+        run: |
+          /home/runner/kaniko/executor \
+            --context $GITHUB_WORKSPACE \
+            --dockerfile $GITHUB_WORKSPACE/Dockerfile \
+            --destination $DOCKER_USERNAME/wenawena:latest \
+            --verbosity info
+        env:
+          DOCKER_USERNAME: "jeanedwien"
+
 
