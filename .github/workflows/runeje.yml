@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted   # o ubuntu-latest si usas runner GitHub
+    runs-on: ['arc-normaliza-runner-set']
 
     steps:
       - name: Checkout code
