@@ -6,10 +6,6 @@ on:
 jobs:
   build:
     runs-on: ['arc-normaliza-runner-set']
-
-    container:
-      image: gcr.io/kaniko-project/executor:latest
-
     steps:
       - uses: actions/checkout@v4
 
