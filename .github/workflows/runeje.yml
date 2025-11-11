@@ -11,7 +11,7 @@ jobs:
 
       - name: Verificar Kaniko
         run: |
-          if [ ! -x "/kaniko/executor" ]; then
+          if [ ! -x "/home/runner/kaniko/executor" ]; then
             echo "❌ Kaniko no está disponible"
             exit 1
           fi
