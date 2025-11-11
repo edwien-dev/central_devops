@@ -4,29 +4,21 @@ on:
   workflow_call:
 
 jobs:
-  hola:
+  build:
     runs-on: ['arc-normaliza-runner-set']
+
+    container:
+      image: gcr.io/kaniko-project/executor:latest
+
     steps:
-      - name: Mostrar saludo
-        run: echo "Hola Mundo 🌍 desde GitHub Actions"
-      
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Docker Hub Login (via nerdctl)
-        env:
-          DOCKERHUB_USERNAME: "jeanedwien"
-          DOCKERHUB_TOKEN: "dckr_pat_nb0ROsd7APeq06wT3fsA7RdU3wM"
+      - name: Verificar Kaniko
         run: |
-          echo "$DOCKERHUB_TOKEN" | nerdctl login -u "$DOCKERHUB_USERNAME" --password-stdin
+          if [ ! -x "/kaniko/executor" ]; then
+            echo "❌ Kaniko no está disponible"
+            exit 1
+          fi
+          echo "✅ Kaniko está presente"
 
-      - name: Build and Push Image with BuildKit
-        run: |
-          # Localiza el socket de buildkit rootless
-          export BUILDKIT_HOST=unix:///run/user/$(id -u)/buildkit/buildkitd.sock
-          
-          buildctl build \
-            --frontend=dockerfile.v0 \
-            --local context=. \
-            --local dockerfile=. \
-            --output type=registry,name=jeanedwien/hello:1.0,push=true
+
