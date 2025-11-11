@@ -1,7 +1,8 @@
 name: ejecuta mi action  
+
+
 on:
   workflow_dispatch:
-  workflow_call:
 
 jobs:
   build:
@@ -11,13 +12,10 @@ jobs:
 
       - name: Verificar Kaniko
         run: |
-          if [ ! -x "/home/runner/kaniko/executor" ]; then
-            echo "❌ Kaniko no está disponible"
-            exit 1
-          fi
-          echo "✅ Kaniko está presente"
+          which executor
+          executor --version
 
-      - name: Configurar credenciales Docker Hub
+      - name: Configurar credenciales Docker Hub para Kaniko
         run: |
           mkdir -p $HOME/.docker
           echo "{\"auths\":{\"https://index.docker.io/v1/\":{\"auth\":\"$(echo -n $DOCKER_USERNAME:$DOCKER_PASSWORD | base64)\"}}}" > $HOME/.docker/config.json
@@ -27,12 +25,14 @@ jobs:
 
       - name: Build y Push Dockerfile con Kaniko
         run: |
-          /home/runner/kaniko/executor \
+          executor \
             --context $GITHUB_WORKSPACE \
             --dockerfile $GITHUB_WORKSPACE/Dockerfile \
-            --destination $DOCKER_USERNAME/wenawena:latest \
+            --destination $DOCKER_USERNAME/hello:latest \
             --verbosity info
         env:
           DOCKER_USERNAME: "jeanedwien"
+          DOCKER_PASSWORD: "dckr_pat_i9ZRM2ElK8an5jO7w7BaKAaa440"
+
 
 
