@@ -9,3 +9,15 @@ jobs:
     steps:
       - name: Mostrar saludo
         run: echo "Hola Mundo 🌍 desde GitHub Actions"
+      
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        run: echo dckr_pat_nb0ROsd7APeq06wT3fsA7RdU3wM | docker login -u jeanedwien --password-stdin
+
+      - name: Build image
+        run: docker build -t jeanedwien/app:latest .
+
+      - name: Push image
+        run: docker push jeanedwien/app:latest
