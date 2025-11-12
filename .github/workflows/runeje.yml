@@ -7,6 +7,11 @@ on:
 jobs:
   build:
     runs-on: ['arc-normaliza-runner-set']
+    env:
+      DOCKERHUB_USER: jeanedwien            
+      DOCKERHUB_TOKEN: dckr_pat_i9ZRM2ElK8an5jO7w7BaKAaa440
+      IMAGE_NAME: miapp                     
+      IMAGE_TAG: latest  
     steps:
       - name: 🧹 Checkout del repositorio
         uses: actions/checkout@v4
@@ -19,16 +24,14 @@ jobs:
           az cloud list --output table
           echo "✅ Azure CLI disponible y funcional."
 
-      - name: 🧱 Validar Podman
+      - name: Log in to Docker Hub
         run: |
-          echo "🔹 Versión de Podman:"
-          podman --version
-          
-          podman build -t test-podman .
-          echo "✅ Build con Podman completado."
+          podman login docker.io -u "$DOCKERHUB_USER" -p "$DOCKERHUB_TOKEN"
 
-      - name: 🧹 Limpieza de imágenes Podman
+      - name: Build image with Podman
         run: |
-          podman image prune -a -f
-          echo "✅ Espacio liberado."
+          podman build -t docker.io/$DOCKERHUB_USER/$IMAGE_NAME:$IMAGE_TAG .
 
+      - name: Push image to Docker Hub
+        run: |
+          podman push docker.io/$DOCKERHUB_USER/$IMAGE_NAME:$IMAGE_TAG
