@@ -26,12 +26,12 @@ jobs:
 
       - name: Log in to Docker Hub
         run: |
-          podman login docker.io -u "$DOCKERHUB_USER" -p "$DOCKERHUB_TOKEN"
+          sudo podman login docker.io -u "$DOCKERHUB_USER" -p "$DOCKERHUB_TOKEN"
 
       - name: Build image with Podman
         run: |
-          podman build -t docker.io/$DOCKERHUB_USER/$IMAGE_NAME:$IMAGE_TAG .
+          sudo podman build -t docker.io/$DOCKERHUB_USER/$IMAGE_NAME:$IMAGE_TAG .
 
       - name: Push image to Docker Hub
         run: |
-          podman push docker.io/$DOCKERHUB_USER/$IMAGE_NAME:$IMAGE_TAG
+          sudo podman push docker.io/$DOCKERHUB_USER/$IMAGE_NAME:$IMAGE_TAG
