@@ -23,9 +23,7 @@ jobs:
         run: |
           echo "🔹 Versión de Podman:"
           podman --version
-          echo "🔹 Información del entorno de Podman:"
-          podman info
-          echo "🔹 Probando build temporal:"
+          
           podman build -t test-podman .
           echo "✅ Build con Podman completado."
 
