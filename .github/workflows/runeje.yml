@@ -33,11 +33,11 @@ jobs:
       - name: Mostrar versión de Java
         run: java -version
 
-      - name: Dar permisos al wrapper de Gradle
-        run: chmod +x gradlew
+      - name: Instalar Gradle
+        uses: gradle/actions/setup-gradle@v3
 
       - name: Mostrar versión de Gradle
-        run: ./gradlew --version
+        run: gradle -v
 
 
       - name: 🧩 Validar Azure CLI
