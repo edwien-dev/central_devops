@@ -33,6 +33,13 @@ jobs:
       - name: Mostrar versión de Java
         run: java -version
 
+      - name: Dar permisos al wrapper de Gradle
+        run: chmod +x gradlew
+
+      - name: Mostrar versión de Gradle
+        run: ./gradlew --version
+
+
       - name: 🧩 Validar Azure CLI
         run: |
           echo "🔹 Versión de Azure CLI:"
