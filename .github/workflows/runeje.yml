@@ -34,9 +34,11 @@ jobs:
         run: java -version
 
       - name: Instalar Gradle
+        if: false
         uses: gradle/actions/setup-gradle@v3
 
       - name: Mostrar versión de Gradle
+        if: false
         run: gradle -v
 
 
