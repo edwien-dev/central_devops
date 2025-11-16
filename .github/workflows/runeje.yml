@@ -48,6 +48,12 @@ jobs:
           az cloud list --output table
           echo "✅ Azure CLI disponible y funcional."
 
+      - name: Instalar kubectl
+        run: az aks install-cli
+
+      - name: Ver versión de kubectl
+        run: kubectl version --client
+
       - name: Log in to Docker Hub
         if: false
         run: |
