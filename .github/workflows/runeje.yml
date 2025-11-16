@@ -43,6 +43,6 @@ jobs:
           podman build -t docker.io/$DOCKERHUB_USER/$IMAGE_NAME:$IMAGE_TAG .
 
       - name: Push image to Docker Hub
-        if:false
+        if: false
         run: |
           podman push docker.io/$DOCKERHUB_USER/$IMAGE_NAME:$IMAGE_TAG
