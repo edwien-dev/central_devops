@@ -33,40 +33,17 @@ jobs:
       - name: Mostrar versión de Java
         run: java -version
 
-      - name: Instalar Gradle
-        if: false
-        uses: gradle/actions/setup-gradle@v3
-
-      - name: Mostrar versión de Gradle
-        if: false
-        run: gradle -v
-
-
-      - name: 🧩 Validar Azure CLI
-        run: |
-          echo "🔹 Versión de Azure CLI:"
-          az version
-          echo "🔹 Autenticando con Azure (modo dry-run):"
-          az cloud list --output table
-          echo "✅ Azure CLI disponible y funcional."
-
-      - name: Instalar kubectl
-        run: az aks install-cli
-
       - name: Ver versión de kubectl
         run: kubectl version --client
 
       - name: Log in to Docker Hub
-        if: false
         run: |
           podman login docker.io -u "$DOCKERHUB_USER" -p "$DOCKERHUB_TOKEN"
 
       - name: Build image with Podman
-        if: false
         run: |
           podman build -t docker.io/$DOCKERHUB_USER/$IMAGE_NAME:$IMAGE_TAG .
 
       - name: Push image to Docker Hub
-        if: false
         run: |
           podman push docker.io/$DOCKERHUB_USER/$IMAGE_NAME:$IMAGE_TAG
