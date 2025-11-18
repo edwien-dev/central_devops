@@ -1,11 +1,11 @@
 name: ejecuta mi action  
 
-
 on:
   workflow_dispatch:
   workflow_call:
+
 jobs:
-  build:
+  flujoangular:
     runs-on: ['arc-normaliza-runner-set']
     env:
       DOCKERHUB_USER: jeanedwien            
