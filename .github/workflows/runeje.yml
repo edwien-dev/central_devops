@@ -32,3 +32,6 @@ jobs:
         run:  | 
           OUTPUT=$(npx ng build | grep "Output location:" | sed 's/Output location: //')
           echo "dist_path=$OUTPUT" >> $GITHUB_OUTPUT
+      
+      - name: Show dist path
+        run: echo "El dist quedó en: ${{ steps.build.outputs.dist_path }}"
