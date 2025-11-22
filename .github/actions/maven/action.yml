@@ -1,12 +1,11 @@
-name: ""
-description: "Muestra un saludo"
-
+name: "instala maven 3-9.6"
+description: "instalacion despues de java"
 
 runs:
   using: "composite"
   steps:
     - name: Descargar Maven 3.9.6
-      run: |
+      run:  |
         MAVEN_TAR="${{ github.action_path }}/apache-maven-3.9.11-bin.tar.gz"
         MAVEN_DIR="/opt/maven"
 
