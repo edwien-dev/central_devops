@@ -13,7 +13,7 @@ runs:
         TARGET_DIR="${{ github.workspace }}"
         tar -xzf apache-maven-3.9.11-bin.tar.gz -C "$TARGET_DIR"
 
-    - name: Descargar Maven 3.9.11
+    - name: Confgurar PATH Maven 3.9.11
       shell: bash
       run:  |
         cd "${{ github.workspace }}"
