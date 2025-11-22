@@ -5,6 +5,7 @@ runs:
   using: "composite"
   steps:
     - name: Descargar Maven 3.9.6
+      shell: bash
       run:  |
         MAVEN_TAR="${{ github.action_path }}/apache-maven-3.9.11-bin.tar.gz"
         MAVEN_DIR="/opt/maven"
@@ -23,4 +24,5 @@ runs:
         echo "PATH=$MAVEN_DIR/bin:$PATH" >> $GITHUB_ENV
     
     - name: Mostrar versión de Maven instalada
+      shell: bash
       run: mvn -v
