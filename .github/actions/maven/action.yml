@@ -1,19 +1,21 @@
-name: "instala maven 3-9.6"
+name: "instala maven 3-9.11"
 description: "instalacion despues de java"
 
 runs:
   using: "composite"
   steps:
-    - name: Descargar Maven 3.9.6
+    - name: Descargar Maven 3.9.11
       shell: bash
       run:  |
-
         ACTION_ROOT="${{ github.action_path }}"
         cd "$ACTION_ROOT"
 
-        TARGET_DIR = "${{ github.workspace }}"
+        TARGET_DIR="${{ github.workspace }}"
         tar -xzf apache-maven-3.9.11-bin.tar.gz -C "$TARGET_DIR"
 
+    - name: Descargar Maven 3.9.11
+      shell: bash
+      run:  |
         cd "${{ github.workspace }}"
 
         MAVEN_DIR=$(ls -d apache-maven-*/ | head -n 1)
@@ -22,4 +24,4 @@ runs:
     
     - name: Mostrar versión de Maven instalada
       shell: bash
-      run: mvn -v
+      run: mvn --version
