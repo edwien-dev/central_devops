@@ -6,22 +6,22 @@ runs:
   using: "composite"
   steps:
     - name: Descargar Maven 3.9.6
-        run: |
-          MAVEN_TAR="${{ github.action_path }}/apache-maven-3.9.11-bin.tar.gz"
-          MAVEN_DIR="/opt/maven"
+      run: |
+        MAVEN_TAR="${{ github.action_path }}/apache-maven-3.9.11-bin.tar.gz"
+        MAVEN_DIR="/opt/maven"
 
-          echo "Usando binario: $MAVEN_TAR"
+        echo "Usando binario: $MAVEN_TAR"
 
-          sudo mkdir -p $MAVEN_DIR
-          sudo tar -xzf "$MAVEN_TAR" -C /opt/
+        sudo mkdir -p $MAVEN_DIR
+        sudo tar -xzf "$MAVEN_TAR" -C /opt/
           
-          MAVEN_FOLDER=$(basename $MAVEN_TAR -bin.tar.gz)
-          echo "Carpeta detectada: $MAVEN_FOLDER"
+        MAVEN_FOLDER=$(basename $MAVEN_TAR -bin.tar.gz)
+        echo "Carpeta detectada: $MAVEN_FOLDER"
 
-          sudo mv "/opt/$MAVEN_FOLDER" "$MAVEN_DIR"
+        sudo mv "/opt/$MAVEN_FOLDER" "$MAVEN_DIR"
 
-          echo "M2_HOME=$MAVEN_DIR" >> $GITHUB_ENV
-          echo "PATH=$MAVEN_DIR/bin:$PATH" >> $GITHUB_ENV
+        echo "M2_HOME=$MAVEN_DIR" >> $GITHUB_ENV
+        echo "PATH=$MAVEN_DIR/bin:$PATH" >> $GITHUB_ENV
     
     - name: Mostrar versión de Maven instalada
       run: mvn -v
