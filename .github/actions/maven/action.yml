@@ -7,21 +7,18 @@ runs:
     - name: Descargar Maven 3.9.6
       shell: bash
       run:  |
-        MAVEN_TAR="${{ github.action_path }}/apache-maven-3.9.11-bin.tar.gz"
-        MAVEN_DIR="/opt/maven"
 
-        echo "Usando binario: $MAVEN_TAR"
+        ACTION_ROOT="${{ github.action_path }}"
+        cd "$ACTION_ROOT"
 
-        sudo mkdir -p $MAVEN_DIR
-        sudo tar -xzf "$MAVEN_TAR" -C /opt/
-          
-        MAVEN_FOLDER=$(basename $MAVEN_TAR -bin.tar.gz)
-        echo "Carpeta detectada: $MAVEN_FOLDER"
+        TARGET_DIR = "${{ github.workspace }}"
+        tar -xzf apache-maven-3.9.11-bin.tar.gz -C "$TARGET_DIR"
 
-        sudo mv "/opt/$MAVEN_FOLDER" "$MAVEN_DIR"
+        cd "${{ github.workspace }}"
 
-        echo "M2_HOME=$MAVEN_DIR" >> $GITHUB_ENV
-        echo "PATH=$MAVEN_DIR/bin:$PATH" >> $GITHUB_ENV
+        MAVEN_DIR=$(ls -d apache-maven-*/ | head -n 1)
+
+        echo "${{ github.workspace }}/${MAVEN_DIR}bin" >> $GITHUB_ENV
     
     - name: Mostrar versión de Maven instalada
       shell: bash
