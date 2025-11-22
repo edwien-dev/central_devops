@@ -28,7 +28,7 @@ jobs:
           echo "$DOCKERHUB_TOKEN" | docker login docker.io -u "$DOCKERHUB_USER" --password-stdin
 
       - name: hola actions
-        uses: edwien-dev/central_devops/.github/action/maven@main
+        uses: edwien-dev/central_devops/.github/actions/maven@main
         with:
           nombre: "jean edwien"
 
