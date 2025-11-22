@@ -27,6 +27,11 @@ jobs:
         run: |
           echo "$DOCKERHUB_TOKEN" | docker login docker.io -u "$DOCKERHUB_USER" --password-stdin
 
+      - name: hola actions
+        uses: edwien-dev/central_devops/.github/action/maven@main
+        with:
+          nombre: "jean edwien"
+
       - name: Build Docker image
         run: |
           docker build -t $DOCKERHUB_USER/$IMAGE_NAME:$IMAGE_TAG .
