@@ -27,6 +27,13 @@ jobs:
         run: |
           echo "$DOCKERHUB_TOKEN" | docker login docker.io -u "$DOCKERHUB_USER" --password-stdin
 
+      - name: Instalar Java 17 con cache de Maven
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+
       - name: hola actions
         uses: edwien-dev/central_devops/.github/actions/maven@main
         with:
