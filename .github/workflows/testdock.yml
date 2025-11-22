@@ -15,18 +15,6 @@ jobs:
       - name: 🧹 Checkout del repositorio
         uses: actions/checkout@v4
 
-      - name: 🧩 Validar Azure CLI
-        run: |
-          echo "🔹 Versión de Azure CLI:"
-          az version
-          echo "🔹 Autenticando con Azure (modo dry-run):"
-          az cloud list --output table
-          echo "✅ Azure CLI disponible y funcional."
-
-      - name: Log in to Docker Hub
-        run: |
-          echo "$DOCKERHUB_TOKEN" | docker login docker.io -u "$DOCKERHUB_USER" --password-stdin
-
       - name: Instalar Java 17 
         uses: actions/setup-java@v4
         with:
@@ -37,10 +25,28 @@ jobs:
       - name: Instalar Maven
         uses: edwien-dev/central_devops/.github/actions/maven@main
 
+      - name: 🧩 Validar Azure CLI
+        if: false
+        run: |
+          echo "🔹 Versión de Azure CLI:"
+          az version
+          echo "🔹 Autenticando con Azure (modo dry-run):"
+          az cloud list --output table
+          echo "✅ Azure CLI disponible y funcional."
+
+      - name: Log in to Docker Hub
+        if: false
+        run: |
+          echo "$DOCKERHUB_TOKEN" | docker login docker.io -u "$DOCKERHUB_USER" --password-stdin
+
+        
+
       - name: Build Docker image
+        if: false
         run: |
           docker build -t $DOCKERHUB_USER/$IMAGE_NAME:$IMAGE_TAG .
 
       - name: Push Docker image
+        if: false
         run: |
           docker push $DOCKERHUB_USER/$IMAGE_NAME:$IMAGE_TAG
