@@ -20,7 +20,7 @@ runs:
 
         MAVEN_DIR=$(ls -d apache-maven-*/ | head -n 1)
 
-        echo "${{ github.workspace }}/${MAVEN_DIR}bin" >> $GITHUB_ENV
+        echo "${{ github.workspace }}/${MAVEN_DIR}bin" >> $GITHUB_PATH
     
     - name: Mostrar versión de Maven instalada
       shell: bash
