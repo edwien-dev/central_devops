@@ -13,7 +13,7 @@ jobs:
         with:
           app-id: ${{ secrets.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_KEY }}
-          owner: edwien-dev
+          owner: ${{ github.repository_owner }}
 
       - name: Checkout proyecto
         uses: actions/checkout@v4
