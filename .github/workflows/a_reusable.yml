@@ -5,7 +5,7 @@ on:
 
 jobs:
   checkout-repos:
-    runs-on: ['localrunner']
+    runs-on: ['self-hosted','Linux','X64','localrunner']
     steps:
       - name: Generar token GitHub App
         id: app-token
