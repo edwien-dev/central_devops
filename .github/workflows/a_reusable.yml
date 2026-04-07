@@ -1,0 +1,27 @@
+name: REUSABLE
+
+on:
+  workflow_call:
+
+jobs:
+  checkout-repos:
+    runs-on: ['arc-normaliza-runner-set']
+    steps:
+      - name: Generar token GitHub App
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_KEY }}
+          owner: empresa
+
+      - name: Checkout proyecto
+        uses: actions/checkout@v4
+        with:
+          repository: edwien-dev/fe-miapp
+          ref: main
+          token: ${{ steps.app-token.outputs.token }}
+          path: repo_codigo
+
+      - name: Ver repos
+        run: ls -la
