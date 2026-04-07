@@ -7,6 +7,12 @@ jobs:
   checkout-repos:
     runs-on: [self-hosted, localrunner]
     steps:
+
+      - name: Mostrar secret
+        run:  |
+          echo GH_APP_ID: ${{ secrets.GH_APP_ID }}
+          echo GH_APP_KEY: ${{ secrets.GH_APP_KEY }}
+
       - name: Generar token GitHub App
         id: app-token
         uses: actions/create-github-app-token@v1
