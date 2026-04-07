@@ -5,7 +5,7 @@ on:
 
 jobs:
   checkout-repos:
-    runs-on: ['arc-normaliza-runner-set','self-hosted']
+    runs-on: ['localrunner']
     steps:
       - name: Generar token GitHub App
         id: app-token
