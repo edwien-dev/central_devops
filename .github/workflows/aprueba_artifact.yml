@@ -14,7 +14,7 @@ jobs:
           echo "Fecha: $(date)" >> resultado.txt
 
       - name: Subir artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: archivo-generado
           path: resultado.txt
@@ -29,7 +29,7 @@ jobs:
 
     steps:
       - name: Descargar artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: archivo-generado
 
