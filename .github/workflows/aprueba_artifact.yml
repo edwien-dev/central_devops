@@ -1,4 +1,4 @@
-name: Artifact Example
+name: Artifact Example name
 run-name: Deploy - ${{ github.event.head_commit.message }}
 
 on:
