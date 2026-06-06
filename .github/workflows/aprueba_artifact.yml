@@ -1,5 +1,7 @@
 name: Artifact Example name
-run-name: Deploy - ${{ github.event.head_commit.message }}
+run-name: >
+  Deploy ${{ github.ref_name }} -
+  ${{ github.actor }}
 
 on:
   workflow_dispatch:
@@ -9,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Mostrar contexto github
+        run: |
+          echo '${{ toJson(github) }}'
+
       - name: Generar archivo
         run: |
           echo "Hola desde el job build" > resultado.txt
