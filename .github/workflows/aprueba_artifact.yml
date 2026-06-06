@@ -1,0 +1,39 @@
+name: Artifact Example
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generar archivo
+        run: |
+          echo "Hola desde el job build" > resultado.txt
+          echo "Fecha: $(date)" >> resultado.txt
+
+      - name: Subir artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: archivo-generado
+          path: resultado.txt
+          retention-days: 1
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    environment:
+      name: production
+
+    steps:
+      - name: Descargar artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: archivo-generado
+
+      - name: Mostrar contenido del archivo
+        run: |
+          echo "Contenido de resultado.txt:"
+          cat resultado.txt
